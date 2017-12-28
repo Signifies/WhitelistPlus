@@ -1,0 +1,14 @@
+name: WhitelistPlus
+main: me.signifies.birb.WhitelistPlus
+version: 1.0
+description: A better whitelist management system.
+author: Signifies
+website: Github
+
+commands:
+  whitelistmsg:
+    description: Set a custom whitelist messaqge on the fly.
+    aliases: [wlm,whitelistm,wm]
+  whitelistplus:
+    description: Manage server whitelist with custom features.
+    aliases: [wlp,wp]
