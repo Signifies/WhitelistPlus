@@ -3,17 +3,11 @@ package commands;
 import Utilities.CWPermissions;
 import Utilities.WPUtils;
 import me.signifies.birb.WhitelistPlus;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.*;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.awt.*;
-
 
 /**
  * Created by Signifies on 12/27/2017 - 13:12.

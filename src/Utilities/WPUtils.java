@@ -13,7 +13,7 @@ import java.util.UUID;
 public class WPUtils
 {
     private static String prefix = "&7Whitelist&b+ &r";
-    private String version = "1.0 - SIG";
+    private String version = "1.2 - SIG";
 
     public static ArrayList<String> devList()
     {
