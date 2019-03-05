@@ -1,9 +1,9 @@
 name: WhitelistPlus
 main: me.signifies.birb.WhitelistPlus
-version: 1.0
+version: 1.2
 description: A better whitelist management system.
 author: Signifies
-website: Github
+website: wwww.github.com/Signifies/whitelistplus
 
 commands:
   whitelistmsg:
