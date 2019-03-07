@@ -1,9 +1,9 @@
 name: WhitelistPlus
 main: me.signifies.birb.WhitelistPlus
-version: 1.2
+version: 1.4
 description: A better whitelist management system.
 author: Signifies
-website: wwww.github.com/Signifies/whitelistplus
+website: https://signifies.github.io/
 
 commands:
   whitelistmsg:
@@ -12,3 +12,24 @@ commands:
   whitelistplus:
     description: Manage server whitelist with custom features.
     aliases: [wlp,wp]
+
+permissions:
+  customwhitelist.*:
+    description: Gives complete access to all permissions.
+    children:
+      customwhitelist.setkickmsg: true
+      customwhitelist.reload: true
+      customwhitelist.cmd: true
+      customwhitelist.enforce.bypass: true
+      customwhitelist.enforce: true
+      customwhitelist.notify: true
+      customwhitelist.whitelist.override: true
+
+  customwhitelist.mod:
+    description: Gives general mod access.
+    children:
+      customwhitelist.cmd: true
+      customwhitelist.enforce.bypass: true
+      customwhitelist.enforce: true
+      customwhitelist.notify: true
+      customwhitelist.whitelist.override: true

@@ -46,16 +46,24 @@ public class WhitelistPlusEvent extends WPUtils implements Listener
         String alert = instance.getConfig().getString("Messages.whitelist-alert");
         alert = alert.replace("{name}", p.getName());
         alert = alert.replace("{uuid}", "" + uuid);
-        alert.replace("\n", "\n");
-        if (checkWhitelist() && !p.isWhitelisted()) {
-            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.translateAlternateColorCodes('&', config));
-            Bukkit.getServer().getConsoleSender().sendMessage(color(alert));
-            for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
-                if (staff.hasPermission(CWPermissions.NOTIFY)) {
-                    if (p.isWhitelisted()) {
-                        return;
+
+        // IF WL = TRUE; THEN DO ALLOWANCE; THEN DO DISALLOWANCE.
+        // IF WL = TRUE; AND P HAS PERM; THEN ALLOW
+
+        if (checkWhitelist()) {
+            /*This logic is important, because we want them to join regardless if they are whitelisted if permission specific control is enabled.*/
+            if (checkWhitelist() && p.hasPermission(CWPermissions.OVERRIDE) || (instance.getConfig().getBoolean("Settings.use-permission") && p.hasPermission(instance.getConfig().getString("Settings.permission")))) {
+                event.setResult(PlayerLoginEvent.Result.ALLOWED);
+            }else if(!p.isWhitelisted()) {
+                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.translateAlternateColorCodes('&', config));
+                Bukkit.getServer().getConsoleSender().sendMessage(color(alert));
+                for (Player staff : Bukkit.getServer().getOnlinePlayers()) {
+                    if (staff.hasPermission(CWPermissions.NOTIFY)) {
+                        if (p.isWhitelisted()) {
+                            return;
+                        }
+                        staff.sendMessage(color(alert));
                     }
-                    staff.sendMessage(color(alert));
                 }
             }
         }

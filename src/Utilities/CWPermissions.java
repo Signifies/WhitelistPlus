@@ -11,4 +11,5 @@ public class CWPermissions
     static public String ENFORCE_BYPASS = "customwhitelist.enforce.bypass";
     static public String ENFORCE_USE = "customwhitelist.enforce";
     static public String NOTIFY = "customwhitelist.notify";
+    static public String OVERRIDE = "customwhitelist.whitelist.override";
 }

@@ -1,14 +1,16 @@
-# ## TAGS: [ {name} {uuid} {admin} {whitelist_status} {whitelist_count} ]
+# TAGS: [ {name} {uuid} {admin} {whitelist_status} {whitelist_count} ]
+Settings:
+  use-permission: false
+  permission: "whitelistplus.servername"
 Messages:
   kick-message: "&9Whitelist&8> &c&oConnection failed: &8&l--&a&l> &cNot Whitelisted, &c&n{name}"
-  whitelist-alert: "&6&l[&cAlert&6&l] &8&l--&a&l> &6&l&n{name}, &7(&a{uuid}&7) &cis not Whitelisted!"
+  whitelist-alert: "&6Alert&7&l> &6&l{name}, &7is not Whitelisted!"
   enforce-kick: "&4Server whitelist was enforced by an Admin!"
-  enforce: "&4{admin}> &c>>&7!&c<< &7whitelist enforce success!"
-  whitelist: "&7Server is whitelisted!"
-  no-whitelist: "&cServer isn't whitelisted!"
+  enforce: "&4{admin}> &7whitelist enforce success!"
+  whitelist: "&aServer is whitelisted!"
+  no-whitelist: "&cServer isnt whitelisted!"
   status: "&bWhitelist Status\n{whitelist_status}\n&7Whitelisted players: &b{whitelist_count}"
 permission-messages:
-  command: "&cwhitelist access requires staff permissions."
+  command: "&cWhitelist access requires staff permissions."
   argument-error: "&7Error with command argument passed."
-  clear: "&7You have cleared the whitelist."
   config-reload: "&7You reloaded whitelist config!"
