@@ -31,6 +31,7 @@ public class WPUtils
     public static String color(String message)
     {
         String result = message;
+        result = result.replace("$prefix",prefix);
         //result = result.replace("$prefix",getPrefix());
         return ChatColor.translateAlternateColorCodes('&',result);
     }

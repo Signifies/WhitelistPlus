@@ -25,7 +25,7 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
         if(!sender.hasPermission(CWPermissions.COMMAND_GENERAL))
         {
             sender.sendMessage(color(instance.getConfig().getString("permission-messages.command")));
-        }else if(args.length <1)
+    }else if(args.length <1)
         {
             sender.sendMessage(color(instance.getConfig().getString("permission-messages.argument-error")));
         }else
@@ -46,12 +46,12 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                 case "help":
                 case "?":
                     sender.sendMessage(color("&a===============&b[Help&b]&a==============="));
-                    sender.sendMessage(color("&b/whitelistmsg <message> &cPermission: &r"+CWPermissions.MSG_COMMAND));
-                    sender.sendMessage(color("&b/whitelistplus enforce &cPermission: &r"+ CWPermissions.ENFORCE_USE));
-                    sender.sendMessage(color("&b/whitelistplus status"));
-                    sender.sendMessage(color("&b/whitelistplus help &a&l- &7Displays the menu you are seeing now..."));
-                    sender.sendMessage(color("&b/whitelistplus reload &cPermission: &r"+CWPermissions.RELOAD));
-                    sender.sendMessage(color("&fOther permissions: &b"+CWPermissions.COMMAND_GENERAL + " " + CWPermissions.ENFORCE_BYPASS + " "+ CWPermissions.ENFORCE_USE + " "+ CWPermissions.NOTIFY));
+                    sender.sendMessage(color("&7/whitelistmsg &b<message> &cPermission: &r"+CWPermissions.MSG_COMMAND));
+                    sender.sendMessage(color("&7/whitelistplus &benforce &cPermission: &r"+ CWPermissions.ENFORCE_USE));
+                    sender.sendMessage(color("&7/whitelistplus &bstatus"));
+                    sender.sendMessage(color("&7/whitelistplus &bhelp &a&l- &7Displays the menu you are seeing now..."));
+                    sender.sendMessage(color("&7/whitelistplus &breload &cPermission: &r"+"" +CWPermissions.RELOAD));
+                    sender.sendMessage(color("&7Other permissions: &b"+ CWPermissions.OVERRIDE +" "+CWPermissions.COMMAND_GENERAL + " " + CWPermissions.ENFORCE_BYPASS + " "+ CWPermissions.ENFORCE_USE + " "+ CWPermissions.NOTIFY));
                     sender.sendMessage(color("&7Replacement Tags:&f {name} {uuid} {admin} {whitelist_status} {whitelist_count}"));
                     break;
                 case "enforce":
@@ -62,22 +62,15 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                     {
                         for(Player p : Bukkit.getServer().getOnlinePlayers())
                         {
-                            //TextComponent wlist = new TextComponent("[players]");
                             if (!p.isWhitelisted() && !(p.hasPermission(CWPermissions.ENFORCE_BYPASS)))
                             {
-
-                                //wlist.setColor(ChatColor.BLUE);
-                                //wlist.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("-> " +p.getName()).create()));
                                 p.kickPlayer(color(instance.getConfig().getString("Messages.enforce-kick")));
                             }
 
                             if(p.hasPermission(CWPermissions.NOTIFY))
                             {
                                 String fix = instance.getConfig().getString("Messages.enforce").replace("{admin}",sender.getName());
-
-                                //fix = fix.replace("{removed_players}",wlist.toString());
                                 p.sendMessage(color(fix));
-                               // p.spigot().sendMessage(wlist);
                             }
                         }
                     }
@@ -90,6 +83,11 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                     result = result.replace("{whitelist_status}",value);
                     result = result.replace("{whitelist_count}",""+wlAmt);
                     sender.sendMessage(result);
+                    break;
+
+                default:
+                   sender.sendMessage(color(instance.getConfig().getString("Messages.argument-error")));
+                break;
             }
         }
         return true;
