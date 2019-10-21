@@ -1,4 +1,4 @@
-package me.signifies.birb;
+package me.signifies.github.io;
 
 import Utilities.CWPermissions;
 import Utilities.WPUtils;

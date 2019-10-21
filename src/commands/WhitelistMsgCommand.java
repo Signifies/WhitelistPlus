@@ -2,7 +2,7 @@ package commands;
 
 import Utilities.CWPermissions;
 import Utilities.WPUtils;
-import me.signifies.birb.WhitelistPlus;
+import me.signifies.github.io.WhitelistPlus;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
