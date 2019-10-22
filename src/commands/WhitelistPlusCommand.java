@@ -4,10 +4,14 @@ import Utilities.CWPermissions;
 import Utilities.WPUtils;
 import me.signifies.github.io.WhitelistPlus;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * Created by Signifies on 12/27/2017 - 13:12.
@@ -48,6 +52,10 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                     sender.sendMessage(color("&a===============&b[Help&b]&a==============="));
                     sender.sendMessage(color("&7/whitelistmsg &b<message> &cPermission: &r"+CWPermissions.MSG_COMMAND));
                     sender.sendMessage(color("&7/whitelistplus &benforce &cPermission: &r"+ CWPermissions.ENFORCE_USE));
+                    sender.sendMessage(color("&7/whitelistplus add <user> &cPermission: &r" +CWPermissions.ADD));
+                    sender.sendMessage(color("&7/whitelistplus remove <user> &cPermission: &r" +CWPermissions.REM));
+      /* For now I'm just going to make this a config option. sender.sendMessage(color("&7/whitelistplus setid &cPermission: &r" +CWPermissions.SET_SERVER)); */
+                    sender.sendMessage(color("&7/whitelistplus convert &cPermission: [MUST BE OPERATOR!] &r" +CWPermissions.CONVERT_DATA));
                     sender.sendMessage(color("&7/whitelistplus &bstatus"));
                     sender.sendMessage(color("&7/whitelistplus &bhelp &a&l- &7Displays the menu you are seeing now..."));
                     sender.sendMessage(color("&7/whitelistplus &breload &cPermission: &r"+"" +CWPermissions.RELOAD));
@@ -74,7 +82,84 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                             }
                         }
                     }
+
+                case "add":
+                    if(!sender.hasPermission(CWPermissions.ADD)) {
+                        sender.sendMessage(color(instance.getConfig().getString("Messages.adduser")));
+                    }else {
+                        if(instance.SQLEnabled()) {
+                            //do sql things
+                            if(args.length > 1) {
+                                //DO shit
+                                try{
+                                    PreparedStatement statement = instance.getSQL().getConnection().prepareStatement("");
+
+                                }catch (SQLException e) {
+
+                                }
+
+                            }else {
+                                sender.sendMessage(color("&7/wl add <user>"));
+                            }
+                        }else {
+                            sender.sendMessage(instance.SQLEnabledResponse());
+                            //TODO or do offline result which we will need since so many people use this plugin.
+                        }
+                    }
                     break;
+                case "remove":
+
+                    if(!sender.hasPermission(CWPermissions.REM)) {
+                        sender.sendMessage(color(instance.getConfig().getString("Messages.perm")));
+                    }else {
+                        if(instance.SQLEnabled()){
+                            //do sql things
+                            if(args.length > 1) {
+                                //remove shit.
+                                try{
+                                    PreparedStatement statement = instance.getSQL().getConnection().prepareStatement("");
+
+                                }catch (SQLException e) {
+
+                                }
+
+                            }else {
+                                sender.sendMessage(color("&7/wl add <user>"));
+                            }
+                        }else {
+                            sender.sendMessage(instance.SQLEnabledResponse());
+                            //TODO or do offline result which we will need since so many people use this plugin.
+                        }
+                    }
+
+                    break;
+                case "rm":
+                    break;
+
+                case "convert":
+                    if(!sender.hasPermission(CWPermissions.CONVERT_DATA) && !sender.isOp()) {
+                        sender.sendMessage(color(instance.getConfig().getString("Messages.convert")));
+                    }else {
+                       if(instance.SQLEnabled()){
+                           if(args.length > 1) {// do stuff
+                               for (OfflinePlayer player : Bukkit.getServer().getWhitelistedPlayers()) {
+                                   try{
+                                       PreparedStatement statement = instance.getSQL().getConnection().prepareStatement("");
+
+                                   }catch (SQLException e) {
+
+                                   }
+                               }
+                           }else {
+                               sender.sendMessage(color("&7/wl convert - &4This converts the standard text WHITELIST into the DATABASE SYSTEM. " +
+                                       "Only use this if you know what your're doing."));
+                           }
+                       }else {
+                           sender.sendMessage(instance.SQLEnabledResponse());
+                       }
+                    }
+                    break;
+
                 case "status":
                     boolean wl = Bukkit.getServer().hasWhitelist();
                     int wlAmt = Bukkit.getServer().getWhitelistedPlayers().size();
@@ -82,6 +167,7 @@ public class WhitelistPlusCommand extends WPUtils implements CommandExecutor
                     String result = color(instance.getConfig().getString("Messages.status"));
                     result = result.replace("{whitelist_status}",value);
                     result = result.replace("{whitelist_count}",""+wlAmt);
+                    result = result.replace("{database}",instance.SQLEnabledResponse());
                     sender.sendMessage(result);
                     break;
 
