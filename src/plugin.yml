@@ -1,6 +1,6 @@
 name: WhitelistPlus
-main: me.signifies.birb.WhitelistPlus
-version: 1.4
+main: me.signifies.github.io.Whitelistplus
+version: 2.0
 description: A better whitelist management system.
 author: Signifies
 website: https://signifies.github.io/

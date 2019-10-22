@@ -1,5 +1,6 @@
 package Utilities;
 
+import me.signifies.github.io.WhitelistPlus;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class WPUtils
 {
     private static String prefix = "&7Whitelist&b+ &r";
-    private String version = "1.2 - SIG";
+    private String version = "2.0 - SIG";
 
     public static ArrayList<String> devList()
     {
@@ -49,4 +50,9 @@ public class WPUtils
         }
     }
 
+   static public void log(String msg, int priority) {
+        if(WhitelistPlus.DEBUG || priority > 0) {
+            Bukkit.getServer().getConsoleSender().sendMessage(prefix + color("&f[&4LOG&f]&r &6" + msg));
+        }
+    }
 }

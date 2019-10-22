@@ -12,4 +12,8 @@ public class CWPermissions
     static public String ENFORCE_USE = "customwhitelist.enforce";
     static public String NOTIFY = "customwhitelist.notify";
     static public String OVERRIDE = "customwhitelist.whitelist.override";
+    static public String ADD = "customwhitelist.add";
+    static public String REM = "customwhitelist.remove";
+    static public String SET_SERVER = "customwhitelist.setserver";
+    static public String CONVERT_DATA = "customwhitelist.convert";
 }

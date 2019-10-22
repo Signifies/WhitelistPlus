@@ -2,6 +2,14 @@
 Settings:
   use-permission: false
   permission: "whitelistplus.servername"
+  server-id: "SEVER-1"
+# Database Management.
+Database:
+  Enabled: false
+  host: 1.0.0.0
+  username: root
+  password: 14931
+  database: user_db
 Messages:
   kick-message: "&9Whitelist&8> &c&oConnection failed: &8&l--&a&l> &cNot Whitelisted, &c&n{name}"
   whitelist-alert: "&6Alert&7&l> &6&l{name}, &7is not Whitelisted!"
@@ -9,7 +17,11 @@ Messages:
   enforce: "&4{admin}> &7whitelist enforce success!"
   whitelist: "&aServer is whitelisted!"
   no-whitelist: "&cServer isnt whitelisted!"
-  status: "&bWhitelist Status\n{whitelist_status}\n&7Whitelisted players: &b{whitelist_count}"
+  perm: "&cHey! No one said you could do that!"
+  status: "&bWhitelist Status\n{whitelist_status}\n&7Whitelisted players: &b{whitelist_count}\n{database}"
+  adduser: "&b[~] &fYou have added the user &7{user} &fto the whitelist!"
+  remuser: "&c[~] &fYou have added the user &7{user} &fto the whitelist!"
+  convert: "&c[!]&r &4This is a sensitive command, you must be OP and have permission!"
 permission-messages:
   command: "&cWhitelist access requires staff permissions."
   argument-error: "&7Error with command argument passed."
