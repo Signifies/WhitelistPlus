@@ -50,9 +50,17 @@ public class WPUtils
         }
     }
 
+   /**
+   Multipurpose Logging and debugging method.
+   Allows a developer to set multiple messages throughout their code that have an easy enable/disable flag.
+   By setting a priority greater than zero you can override the debug method and work only on a specific message
+   without having to enable ALL of your debug messages.
+   This method also makes use of a specific prefix baised on what values you pass onto the method itself. 
+   */
    static public void log(String msg, int priority) {
+        String tag = (WhitelistPlus.DEBUG || priority > 1) ? "&f[&2DEBUG&f]&r":"&f[&4LOG&f]&r";
         if(WhitelistPlus.DEBUG || priority > 0) {
-            Bukkit.getServer().getConsoleSender().sendMessage(prefix + color("&f[&4LOG&f]&r &6" + msg));
+            Bukkit.getServer().getConsoleSender().sendMessage(prefix + color(tag+" &6" + msg));
         }
     }
 }
